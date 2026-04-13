@@ -1,0 +1,42 @@
+name: Build EVE DPS EXE
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyinstaller pywin32
+
+      - name: Build EXE
+        run: |
+          pyinstaller --onefile --noconsole --name EVE_DPS `
+            --hidden-import win32gui `
+            --hidden-import win32con `
+            --hidden-import win32api `
+            --icon EVE_DPS_icon.ico `
+            --clean `
+            EVE_DPS.py
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: "EVE DPS - Build ${{ github.run_number }}"
+          files: dist/EVE_DPS.exe
+          body: "자동 빌드 - commit ${{ github.sha }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
