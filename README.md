@@ -28,3 +28,11 @@ A simple Windows tool for reading EVE Online combat logs and showing:
 
 ```cmd
 py EVE_DPS.py
+
+
+## Virus Scan Results
+Due to the nature of PyInstaller-built executables, some antivirus software may generate false positives.
+67 out of 72 vendors detected clean. All flagged results are AI/heuristic-based, not actual malware signatures.
+Source code is fully open source — feel free to review it yourself.
+
+https://www.virustotal.com/gui/file/ede0c20af22204f5c2574d103bf6db97cbe88e62ec903be7f69076aac8a13070?nocache=1
