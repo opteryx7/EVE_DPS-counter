@@ -1,38 +1,59 @@
 # EVE_DPS-counter
-
 A simple Windows tool for reading EVE Online combat logs and showing:
-
-- Current DPS
-- Total DPS
-- Total damage
+- Current Incoming / Outgoing DPS
+- Total  Incoming / Outgoing DPS
+- Total  Incoming / Outgoing damage
 - Recent combat graph
 
 ## Features
-
 - Auto-detects running EVE characters
 - Tracks outgoing damage from combat logs
 - Uses incoming or outgoing damage to keep combat status active
 - Excludes non-attacking time from DPS duration
 - Supports character alias and hide
-- Shows recent combat graphs for visible characters
+- Shows recent combat graphs and battle history
 - Supports taskbar minimize
+- Incoming damage tracking (Inc.DPS, Inc.T.DPS, Inc.T.Dam)
+- Customizable character sorting — Top/Bottom dealer, A→Z, or drag-and-drop manual order
+- DPS bar graph overlay on each character row
+- Resizable graph/history window with persistent size and position
+- Alarm system — visual blink and sound alert when Inc.DPS exceeds a set threshold
+- Supports English and Korean EVE clients (JP, DE, RU, FR also supported)
 
 ## Requirements
-
 - Windows
-- Python 3
-- EVE Online combat logs
-- `pywin32`
+- EVE Online
 
-## Run
+## Download
+Download the latest **EVE_DPS.exe** from the release page(https://github.com/opteryx7/EVE_DPS-counter/releases). No installation or Python required.
 
+## Security Notice
+Some antivirus tools may flag this as suspicious due to the PyInstaller packaging method — this is a known false positive. If blocked, add an exception in your antivirus or Windows Defender settings.
+
+This tool is fully open source — you can review every line of code on GitHub. It only reads EVE Online's local combat log files and saves a small config file to your home directory. No network connections, no data collection, no external servers.
+
+[VirusTotal scan results] (https://www.virustotal.com/gui/file/e847d57d5d51a570f5d2acd7b263538409fae73abcb61fb5b215bda14e9cddf7)
+
+## Changelog
+**v1.3**
+- Incoming damage panel (Inc.DPS / Inc.T.DPS / Inc.T.Dam) with collapse toggle
+- Character sort order (Top/Bottom dealer, name, manual drag-and-drop) — persists on restart
+- DPS bar graph background per character row
+- Resizable and repositionable graph/history window
+- Alarm system with visual blink and sound alert (customizable threshold and WAV)
+- Graph window title bar removed for compact layout
+- History scrollbar styled to match UI
+- Multi-language combat log support (EN/KO/JP/DE/RU/FR)
+
+**v1.2**
+- Battle history tab with per-character DPS and damage
+- Recent battle graph
+- Character alias (inline edit) and hide
+- Window position and transparency saved on exit
+- Korean client support
+
+## Run from source
 ```cmd
+pip install pywin32
 py EVE_DPS.py
-
-
-## Virus Scan Results
-Due to the nature of PyInstaller-built executables, some antivirus software may generate false positives.
-67 out of 72 vendors detected clean. All flagged results are AI/heuristic-based, not actual malware signatures.
-Source code is fully open source — feel free to review it yourself.
-
-https://www.virustotal.com/gui/file/ede0c20af22204f5c2574d103bf6db97cbe88e62ec903be7f69076aac8a13070?nocache=1
+```
