@@ -22,21 +22,17 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install nuitka pywin32 zstandard ordered-set
+        run: pip install pyinstaller pywin32
 
-      - name: Build EXE with Nuitka
+      - name: Build EXE
         run: |
-          python -m nuitka `
-            --onefile `
-            --windows-console-mode=disable `
-            --output-filename=EVE_DPS.exe `
-            --windows-icon-from-ico=EVE_DPS_icon.ico `
-            --enable-plugin=tk-inter `
-            --assume-yes-for-downloads `
-            --include-module=wave `
-            --include-module=struct `
-            --include-module=tempfile `
-            --include-module=winsound `
+          pyinstaller --onefile --noconsole --name EVE_DPS `
+            --hidden-import win32gui `
+            --hidden-import win32con `
+            --hidden-import win32api `
+            --hidden-import winsound `
+            --icon EVE_DPS_icon.ico `
+            --clean `
             EVE_DPS.py
 
       - name: Create Release
@@ -44,7 +40,7 @@ jobs:
         with:
           tag_name: v1.3-build-${{ github.run_number }}
           name: "EVE DPS v1.3 - Build ${{ github.run_number }}"
-          files: EVE_DPS.exe
-          body: "v1.3 자동 빌드 (Nuitka)"
+          files: dist/EVE_DPS.exe
+          body: "v1.3 자동 빌드"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
