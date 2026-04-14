@@ -32,7 +32,7 @@ Some antivirus tools may flag this as suspicious due to the PyInstaller packagin
 
 This tool is fully open source — you can review every line of code on GitHub. It only reads EVE Online's local combat log files and saves a small config file to your home directory. No network connections, no data collection, no external servers.
 
-[VirusTotal scan results] (https://www.virustotal.com/gui/file/e847d57d5d51a570f5d2acd7b263538409fae73abcb61fb5b215bda14e9cddf7)
+[VirusTotal scan results] (https://www.virustotal.com/gui/file/5a51eca36e753ca3b2bf3bd36e426737958f75f4c290993bf7668c49bc6b84cd?nocache=1)
 
 ## Changelog
 **v1.3**
